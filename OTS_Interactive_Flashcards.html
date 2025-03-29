@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OTS Interactive Flashcards</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f0f0; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+    .flashcard { background: white; border-radius: 10px; padding: 30px; max-width: 600px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-align: center; }
+    .flashcard h2 { margin-top: 0; }
+    button { margin: 20px 10px; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; }
+    .controls { display: flex; justify-content: center; flex-wrap: wrap; }
+    #answer { display: none; margin-top: 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1>OTS Interactive Flashcards</h1>
+  <div class="flashcard">
+    <h2 id="question">Loading...</h2>
+    <div id="answer"></div>
+  </div>
+  <div class="controls">
+    <button onclick="showAnswer()">Show Answer</button>
+    <button onclick="prevCard()">Previous</button>
+    <button onclick="nextCard()">Next</button>
+  </div>
+
+  <script>
+    const flashcards = [
+      { q: "OTS Ethos", a: "As OTS professionals, we are dedicated to owning the mission. We will purposefully develop as leaders... ‘Always with Honor!’" },
+      { q: "OTS Vision", a: "The premier leader-development institution within the Profession of Arms." },
+      { q: "OTS Mission", a: "Developing Warrior-Minded Leaders of Character committed to our oath, values, and creed." },
+      { q: "OTS Honor Code", a: "We will not lie, steal, or cheat, nor tolerate among us anyone who does." },
+      { q: "Accountability (Developing Self)", a: "Own your actions. Take responsibility and be reliable for both yourself and the team." },
+      { q: "Perseverance (Developing Self)", a: "Push through setbacks. Stay committed even when it's hard." },
+      { q: "Communication (Developing Self)", a: "Speak clearly, listen actively, and tailor your message." },
+      { q: "Decision Making (Developing Self)", a: "Make timely, effective decisions. Don't freeze under pressure." },
+      { q: "Information Seeking (Developing Self)", a: "Stay curious and ask questions. Always seek to learn more." },
+      { q: "Flexibility (Developing Self)", a: "Adapt smoothly to change. Model calmness." },
+      { q: "Resilience (Developing Self)", a: "Stay grounded under stress. Channel your energy productively." },
+      { q: "Initiative (Developing Self)", a: "Step up without being told. Take action to improve outcomes." },
+      { q: "Self-Control (Developing Self)", a: "Stay composed even when under pressure. Lead calmly." },
+      { q: "Teamwork (Developing Others)", a: "Support your peers. Help without being asked." },
+      { q: "Develops People (Developing Others)", a: "Share your knowledge. Offer help and mentoring." },
+      { q: "Service Mindset (Developing Others)", a: "Look out for others' needs. Serve before self." },
+      { q: "Leadership (Developing Others)", a: "Lead with action and humility. Organize and motivate." },
+      { q: "Fosters Inclusion (Developing Others)", a: "Ensure everyone is heard and respected. Build unity." },
+      { q: "Analytical Thinking (Developing Ideas)", a: "Ask why. Link tasks to strategy. Think critically." },
+      { q: "Digital Literacy (Developing Ideas)", a: "Use tech smartly to lead and learn effectively." },
+      { q: "Creative Thinking (Developing Ideas)", a: "Offer new solutions. Question the status quo." },
+      { q: "Fostering Innovation (Developing Ideas)", a: "Encourage fresh ideas. Reward creativity." },
+      { q: "Influence (Developing Ideas)", a: "Inspire and motivate through authenticity and logic." },
+      { q: "Resource Management (Developing Organizations)", a: "Use time, people, and tools efficiently." },
+      { q: "Results Focused (Developing Organizations)", a: "Strive for excellence. Ask how to do better." },
+      { q: "Change Management (Developing Organizations)", a: "Adapt quickly and guide others through change." },
+      { q: "Strategic Thinking (Developing Organizations)", a: "Keep the mission and end state in mind." },
+      { q: "Precision (Developing Organizations)", a: "Pay attention to detail. Reduce uncertainty." }
+    ];
+
+    let currentIndex = 0;
+
+    function updateCard() {
+      document.getElementById('question').innerText = flashcards[currentIndex].q;
+      document.getElementById('answer').innerText = flashcards[currentIndex].a;
+      document.getElementById('answer').style.display = 'none';
+    }
+
+    function showAnswer() {
+      document.getElementById('answer').style.display = 'block';
+    }
+
+    function nextCard() {
+      currentIndex = (currentIndex + 1) % flashcards.length;
+      updateCard();
+    }
+
+    function prevCard() {
+      currentIndex = (currentIndex - 1 + flashcards.length) % flashcards.length;
+      updateCard();
+    }
+
+    updateCard();
+  </script>
+</body>
+</html>
